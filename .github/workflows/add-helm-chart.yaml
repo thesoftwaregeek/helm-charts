@@ -16,15 +16,6 @@ on:
       chart_version:
         description: 'Chart version (e.g., 1.15.0)'
         required: true
-      registry_url:
-        description: 'Docker Image Registry Url (default: docker.io)'
-        required: false
-        default: 'docker.io'
-      docker_image_version:
-        description: 'Docker Image Version (default: latest)'
-        required: false
-        default: latest
-        
 
 jobs:
   add-chart:
@@ -201,8 +192,6 @@ jobs:
           echo "- **Chart Name:** ${{ github.event.inputs.chart_name }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Version:** ${{ github.event.inputs.chart_version }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Repository:** [${{ github.event.inputs.chart_repo_name }}](${{ github.event.inputs.chart_repo_url }})" >> $GITHUB_STEP_SUMMARY
-          echo "- **Docker Registry:** ${{ github.event.inputs.registry_url }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Docker Image Version:** ${{ github.event.inputs.docker_image_version }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "## Next Steps" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
