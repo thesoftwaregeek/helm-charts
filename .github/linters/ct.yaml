@@ -1,0 +1,26 @@
+# See https://github.com/helm/chart-testing#configuration
+remote: origin
+target-branch: main
+chart-dirs:
+  - charts
+chart-repos:
+  - thesoftwaregeek=https://thesoftwaregeek.github.io/helm-charts
+  - crossplane-stable=https://charts.crossplane.io/stable
+  - jetstack=https://charts.jetstack.io
+  - external-secrets=https://charts.external-secrets.io
+  - prometheus-community=https://prometheus-community.github.io/helm-charts
+  - grafana=https://grafana.github.io/helm-charts
+  - bitnami=https://charts.bitnami.com/bitnami
+  - external-dns=https://kubernetes-sigs.github.io/external-dns/
+  - secrets-store-csi-driver=https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts
+  - cluster-autoscaler=https://kubernetes.github.io/autoscaler
+  - aws-ebs-csi-driver=https://kubernetes-sigs.github.io/aws-ebs-csi-driver
+  - eks=https://aws.github.io/eks-charts
+  - istio=https://istio-release.storage.googleapis.com/charts
+helm-extra-args: --timeout 600s
+# See https://github.com/helm/chart-testing#configuration
+additional-commands:
+  - sh -ec "if [ -f '{{ .Path }}/ci/lint.sh' ]; then shellcheck '{{ .Path }}/ci/lint.sh'; bash '{{ .Path }}/ci/lint.sh'; fi"
+  # - helm unittest --helm3 --strict --file unittests/*.yaml --file 'unittests/**/*.yaml' {{ .Path }}
+github-groups: true
+validate-maintainers: false

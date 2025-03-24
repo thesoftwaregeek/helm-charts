@@ -1,0 +1,62 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":semanticCommits",
+    "helpers:pinGitHubActionDigestsToSemver"
+  ],
+  "minimumReleaseAge": "3 days",
+  "pruneStaleBranches": true,
+  "recreateWhen": "always",
+  "rebaseWhen": "behind-base-branch",
+  "semanticCommits": "enabled",
+  "labels": [
+    "{{depType}}",
+    "datasource::{{datasource}}",
+    "type::{{updateType}}",
+    "manager::{{manager}}"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "datasourceTemplate": "helm",
+      "fileMatch": [
+        "charts/.+/Chart\\.yaml$"
+      ],
+      "matchStrings": [
+        "#\\s*renovate: datasource=(?<datasource>.*?)\\s+depName=(?<depName>.*?)\\s+registryUrl=(?<registryUrl>.*?)\\s+version:\\s*['\"]?(?<currentValue>\\d+\\.\\d+\\.\\d+)(?:-\\d+)?['\"]?"
+      ]
+    }
+  ],
+  "packageRules": [
+    {
+      "matchFileNames": [
+        "charts/**"
+      ],
+      "versioning": "semver",
+      "ignoreUnstable": true,
+      "rangeStrategy": "bump",
+      "separateMinorPatch": true,
+      "separateMajorMinor": true,
+      "ignoreDeprecated": true,
+      "minimumReleaseAge": "3 days",
+      "prBodyNotes": [
+        "Version number will be automatically appended with build metadata on merge."
+      ],
+      "matchPackageNames": [
+        "/.*/"
+      ]
+    },
+    {
+      "matchDatasources": [
+        "helm",
+        "docker"
+      ],
+      "groupName": "helm-charts",
+      "commitMessagePrefix": "chore(deps):",
+      "commitMessageAction": "update",
+      "commitMessageExtra": "helm chart {{{depName}}} to v{{{newVersion}}}",
+      "ignoreUnstable": true
+    }
+  ]
+}

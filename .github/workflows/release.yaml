@@ -1,0 +1,96 @@
+name: Release Charts
+permissions: {}
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    permissions:
+      contents: write # to push chart release and create a release (helm/chart-releaser-action)
+      packages: write # needed for ghcr access
+      id-token: write # needed for keyless signing
+
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Fetch history
+        run: git fetch --prune --unshallow
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Set up Helm
+        uses: azure/setup-helm@b9e51907a09c216f16ebe8536097933489208112 # v4.3.0
+        with:
+          version: v3.12.0
+
+      - name: Run chart-releaser
+        id: chart-releaser
+        uses: helm/chart-releaser-action@cae68fefc6b5f367a0275617c9f83181ba54714f # v1.7.0
+        with:
+          skip_existing: true
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_GENERATE_RELEASE_NOTES: true
+
+      - name: Login to GitHub Container Registry
+        if: steps.chart-releaser.outputs.changed_charts != ''
+        uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3.4.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Cosign
+        if: steps.chart-releaser.outputs.changed_charts != ''
+        uses: sigstore/cosign-installer@d7d6bc7722e3daa8354c50bcb52f4837da5e9b6a # v3.8.1
+        with:
+          cosign-release: 'v2.4.3'
+      
+      - name: Check cosign installation
+        if: steps.chart-releaser.outputs.changed_charts != ''
+        run: cosign version
+
+      - name: Push charts to GHCR and sign
+        if: steps.chart-releaser.outputs.changed_charts != ''
+        run: |
+          shopt -s nullglob
+          for pkg in .cr-release-packages/*; do
+            if [ -z "${pkg:-}" ]; then
+              break
+            fi
+            # Push the chart and capture both stdout and stderr
+            output=$(helm push "${pkg}" "oci://ghcr.io/${GITHUB_REPOSITORY_OWNER}/charts" 2>&1)
+            echo "Full output:"
+            echo "$output"
+            
+            # Extract the digest from the specific Digest: line
+            digest=$(echo "$output" | grep "Digest: " | sed 's/Digest: //')
+            if [ -z "$digest" ]; then
+              echo "Failed to extract digest from output"
+              exit 1
+            fi
+            echo "Found digest: $digest"
+            
+            # Extract chart name and version from the Pushed: line
+            ref=$(echo "$output" | grep "Pushed: " | sed 's/Pushed: //')
+            if [ -z "$ref" ]; then
+              echo "Failed to extract reference from output"
+              exit 1
+            fi
+            echo "Found reference: $ref"
+            
+            # Convert tag-based reference to digest-based reference
+            ref="${ref%:*}@${digest}"
+            echo "Signing reference: $ref"
+            
+            # Sign the chart with keyless signing
+            cosign sign --yes --recursive "${ref}"
+          done
