@@ -1,14 +1,14 @@
 apiVersion: v2
 name: external-dns
 # renovate: datasource=helm depName=external-dns registryUrl=https://kubernetes-sigs.github.io/external-dns/
-version: "1.15.2-0"
+version: "1.16.0-0"
 kubeVersion: '>=1.25.0-0'
 maintainers:
   - name: mohammadsrahman
     email: mohammadsrahman@users.noreply.github.com
 dependencies:
   - name: external-dns
-    version: 1.15.2
+    version: 1.16.0
     repository: https://kubernetes-sigs.github.io/external-dns/
 description: ExternalDNS synchronizes exposed Kubernetes Services and Ingresses with DNS providers.
 home: https://github.com/kubernetes-sigs/external-dns/
