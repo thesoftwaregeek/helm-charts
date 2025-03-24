@@ -2,6 +2,34 @@ apiVersion: v1
 entries:
   external-dns:
   - apiVersion: v2
+    created: "2025-03-24T16:59:54.501374762Z"
+    dependencies:
+    - name: external-dns
+      repository: https://kubernetes-sigs.github.io/external-dns/
+      version: 1.16.0
+    description: ExternalDNS synchronizes exposed Kubernetes Services and Ingresses
+      with DNS providers.
+    digest: a40e9caaff0d90e3563d5e7296c8283c91331311c6aaae3670cf1ccb2a600b96
+    home: https://github.com/kubernetes-sigs/external-dns/
+    icon: https://github.com/kubernetes-sigs/external-dns/raw/master/docs/img/external-dns.png
+    keywords:
+    - kubernetes
+    - externaldns
+    - external-dns
+    - dns
+    - service
+    - ingress
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: external-dns
+    sources:
+    - https://github.com/kubernetes-sigs/external-dns/
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/external-dns-1.16.0-0/external-dns-1.16.0-0.tgz
+    version: 1.16.0-0
+  - apiVersion: v2
     created: "2025-03-24T16:55:59.307946188Z"
     dependencies:
     - name: external-dns
@@ -57,4 +85,4 @@ entries:
     urls:
     - https://github.com/thesoftwaregeek/helm-charts/releases/download/external-dns-1.15.0-0/external-dns-1.15.0-0.tgz
     version: 1.15.0-0
-generated: "2025-03-24T16:55:59.30798428Z"
+generated: "2025-03-24T16:59:54.501390692Z"
