@@ -32,8 +32,8 @@ jobs:
         run: |
           changed="$(ct list-changed --config .github/linters/ct.yaml)"
           if [[ -n "$changed" ]]; then
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-            echo "changed_list=${changed//$'\n'/ }" >> "$GITHUB_OUTPUT"
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "changed_list=${changed//$'\n'/ }" >> $GITHUB_OUTPUT
           fi
 
       - name: Bump chart version
@@ -125,8 +125,8 @@ jobs:
         run: |
           changed="$(ct list-changed --config .github/linters/ct.yaml)"
           if [[ -n "$changed" ]]; then
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-            echo "changed_list=${changed//$'\n'/ }" >> "$GITHUB_OUTPUT"
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "changed_list=${changed//$'\n'/ }" >> $GITHUB_OUTPUT
           fi
 
       - name: Bump chart version
@@ -229,8 +229,8 @@ jobs:
         run: |
           changed="$(ct list-changed --config .github/linters/ct.yaml)"
           if [[ -n "$changed" ]]; then
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-            echo "changed_list=${changed//$'\n'/ }" >> "$GITHUB_OUTPUT"
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "changed_list=${changed//$'\n'/ }" >> $GITHUB_OUTPUT
           fi
 
       - name: Generate diffs for each chart

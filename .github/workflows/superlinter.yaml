@@ -1,5 +1,8 @@
 name: Lint Code Base
-permissions: {}
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
 
 # Documentation:
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
@@ -10,8 +13,6 @@ jobs:
   build:
     name: Lint Code Base
     runs-on: ubuntu-24.04
-    permissions:
-      contents: read
     steps:
       - name: Checkout Code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
