@@ -2,6 +2,32 @@ apiVersion: v1
 entries:
   argo-cd:
   - apiVersion: v2
+    created: "2025-03-26T15:31:16.6490766Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 7.8.14
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 214d317012d65f8f6ed1d83b154677c510055741ddb33c62e8b91c0fbe00f36c
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/argo-cd-7.8.14-0/argo-cd-7.8.14-0.tgz
+    version: 7.8.14-0
+  - apiVersion: v2
     created: "2025-03-26T15:29:09.275013143Z"
     dependencies:
     - name: argo-cd
@@ -138,4 +164,4 @@ entries:
     urls:
     - https://github.com/thesoftwaregeek/helm-charts/releases/download/external-dns-1.15.0-0/external-dns-1.15.0-0.tgz
     version: 1.15.0-0
-generated: "2025-03-26T15:29:09.275037047Z"
+generated: "2025-03-26T15:31:16.649112126Z"
