@@ -17,6 +17,7 @@ chart-repos:
   - aws-ebs-csi-driver=https://kubernetes-sigs.github.io/aws-ebs-csi-driver
   - eks=https://aws.github.io/eks-charts
   - istio=https://istio-release.storage.googleapis.com/charts
+  - argo-cd=https://argoproj.github.io/argo-helm
 helm-extra-args: --timeout 600s
 # See https://github.com/helm/chart-testing#configuration
 additional-commands:
