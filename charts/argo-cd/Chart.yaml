@@ -1,7 +1,7 @@
 apiVersion: v2
 name: argo-cd
 # renovate: datasource=helm depName=argo-cd registryUrl=https://argoproj.github.io/argo-helm
-version: 7.8.11
+version: "7.8.11-0"
 kubeVersion: '>=1.25.0-0'
 maintainers:
   - name: mohammadsrahman
