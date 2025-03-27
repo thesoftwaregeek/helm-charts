@@ -1,0 +1,20 @@
+apiVersion: v2
+name: aws-ebs-csi-driver
+# renovate: datasource=helm depName=aws-ebs-csi-driver registryUrl=https://kubernetes-sigs.github.io/aws-ebs-csi-driver
+version: "2.41.0"
+kubeVersion: '>=1.25.0-0'
+maintainers:
+  - name: mohammadsrahman
+    email: mohammadsrahman@users.noreply.github.com
+dependencies:
+  - name: aws-ebs-csi-driver
+    version: 2.41.0
+    repository: https://kubernetes-sigs.github.io/aws-ebs-csi-driver
+description: A Helm chart for AWS EBS CSI Driver
+home: https://github.com/kubernetes-sigs/aws-ebs-csi-driver
+sources:
+  - https://github.com/kubernetes-sigs/aws-ebs-csi-driver
+keywords:
+  - aws
+  - ebs
+  - csi
