@@ -79,6 +79,30 @@ entries:
     urls:
     - https://github.com/thesoftwaregeek/helm-charts/releases/download/argo-cd-7.8.11-0/argo-cd-7.8.11-0.tgz
     version: 7.8.11-0
+  aws-ebs-csi-driver:
+  - apiVersion: v2
+    created: "2025-03-27T16:24:23.248829335Z"
+    dependencies:
+    - name: aws-ebs-csi-driver
+      repository: https://kubernetes-sigs.github.io/aws-ebs-csi-driver
+      version: 2.41.0
+    description: A Helm chart for AWS EBS CSI Driver
+    digest: d9560b43d8fdf56eedb6d4a287d757e3dc530eeea129524f76543593361f94c6
+    home: https://github.com/kubernetes-sigs/aws-ebs-csi-driver
+    keywords:
+    - aws
+    - ebs
+    - csi
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: aws-ebs-csi-driver
+    sources:
+    - https://github.com/kubernetes-sigs/aws-ebs-csi-driver
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/aws-ebs-csi-driver-2.41.0-0/aws-ebs-csi-driver-2.41.0-0.tgz
+    version: 2.41.0-0
   external-dns:
   - apiVersion: v2
     created: "2025-03-24T16:59:54.501374762Z"
@@ -164,4 +188,4 @@ entries:
     urls:
     - https://github.com/thesoftwaregeek/helm-charts/releases/download/external-dns-1.15.0-0/external-dns-1.15.0-0.tgz
     version: 1.15.0-0
-generated: "2025-03-26T15:31:16.649112126Z"
+generated: "2025-03-27T16:24:23.248862718Z"
