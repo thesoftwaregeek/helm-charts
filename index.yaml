@@ -1,3 +1,83 @@
 apiVersion: v1
-entries: {}
-generated: "2025-03-27T22:43:35.7511Z"
+entries:
+  argo-cd:
+  - apiVersion: v2
+    created: "2025-03-27T22:46:37.198282286Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 7.8.14
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 8cd7521b9e020dcede4dafc76a8e2c5fffe9ad083484a5c5fbe0b82ef70263e7
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - argo-cd-7.8.14-0.tgz
+    version: 7.8.14-0
+  aws-ebs-csi-driver:
+  - apiVersion: v2
+    created: "2025-03-27T22:46:37.387972338Z"
+    dependencies:
+    - name: aws-ebs-csi-driver
+      repository: https://kubernetes-sigs.github.io/aws-ebs-csi-driver
+      version: 2.41.0
+    description: A Helm chart for AWS EBS CSI Driver
+    digest: 95c41309c2844aedc324cf4e61b9cae7a30d9aaac53f098b5d803ce447b4e0cf
+    home: https://github.com/kubernetes-sigs/aws-ebs-csi-driver
+    keywords:
+    - aws
+    - ebs
+    - csi
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: aws-ebs-csi-driver
+    sources:
+    - https://github.com/kubernetes-sigs/aws-ebs-csi-driver
+    urls:
+    - aws-ebs-csi-driver-2.41.0-0.tgz
+    version: 2.41.0-0
+  external-dns:
+  - apiVersion: v2
+    created: "2025-03-27T22:46:37.565626311Z"
+    dependencies:
+    - name: external-dns
+      repository: https://kubernetes-sigs.github.io/external-dns/
+      version: 1.16.0
+    description: ExternalDNS synchronizes exposed Kubernetes Services and Ingresses
+      with DNS providers.
+    digest: 5e3f1c2c25627da4d10eb8e59b18dfe0c212ee8a8901c808c3e8301d2fefb5cf
+    home: https://github.com/kubernetes-sigs/external-dns/
+    icon: https://github.com/kubernetes-sigs/external-dns/raw/master/docs/img/external-dns.png
+    keywords:
+    - kubernetes
+    - externaldns
+    - external-dns
+    - dns
+    - service
+    - ingress
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: external-dns
+    sources:
+    - https://github.com/kubernetes-sigs/external-dns/
+    urls:
+    - external-dns-1.16.0-0.tgz
+    version: 1.16.0-0
+generated: "2025-03-27T22:46:37.565635649Z"
