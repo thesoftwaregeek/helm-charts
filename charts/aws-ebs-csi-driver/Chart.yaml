@@ -1,7 +1,7 @@
 apiVersion: v2
 name: aws-ebs-csi-driver
 # renovate: datasource=helm depName=aws-ebs-csi-driver registryUrl=https://kubernetes-sigs.github.io/aws-ebs-csi-driver
-version: "2.41.0-0"
+version: "2.41.0+0"
 kubeVersion: '>=1.25.0-0'
 maintainers:
   - name: mohammadsrahman
