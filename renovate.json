@@ -16,18 +16,6 @@
     "type::{{updateType}}",
     "manager::{{manager}}"
   ],
-  "customManagers": [
-    {
-      "customType": "regex",
-      "datasourceTemplate": "helm",
-      "fileMatch": [
-        "charts/.+/Chart\\.yaml$"
-      ],
-      "matchStrings": [
-        "#\\s*renovate: datasource=(?<datasource>.*?)\\s+depName=(?<depName>.*?)\\s+registryUrl=(?<registryUrl>.*?)\\s+version:\\s*['\"]?(?<currentValue>\\d+\\.\\d+\\.\\d+)(?:-\\d+)?['\"]?"
-      ]
-    }
-  ],
   "packageRules": [
     {
       "matchFileNames": [
