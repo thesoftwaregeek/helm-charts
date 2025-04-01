@@ -27,6 +27,32 @@ entries:
     urls:
     - argo-cd-7.8.14-0.tgz
     version: 7.8.14-0
+  - apiVersion: v2
+    created: "2025-04-01T15:20:46.406043249Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 7.8.14
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 7f93af8ae5ff4540f299d2ec74ea287d9ef7ec014c6e48a68ff3f8b81c8185b2
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/argo-cd-1.0.0/argo-cd-1.0.0.tgz
+    version: 1.0.0
   aws-ebs-csi-driver:
   - apiVersion: v2
     created: "2025-03-27T22:46:37.387972338Z"
@@ -51,6 +77,29 @@ entries:
     urls:
     - aws-ebs-csi-driver-2.41.0-0.tgz
     version: 2.41.0-0
+  - apiVersion: v2
+    created: "2025-04-01T15:20:46.61962937Z"
+    dependencies:
+    - name: aws-ebs-csi-driver
+      repository: https://kubernetes-sigs.github.io/aws-ebs-csi-driver
+      version: 2.41.0
+    description: A Helm chart for AWS EBS CSI Driver
+    digest: 20f55a3c683629eb89c113762e385bb01636403e628d1835240b88d52ae972e2
+    home: https://github.com/kubernetes-sigs/aws-ebs-csi-driver
+    keywords:
+    - aws
+    - ebs
+    - csi
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: aws-ebs-csi-driver
+    sources:
+    - https://github.com/kubernetes-sigs/aws-ebs-csi-driver
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/aws-ebs-csi-driver-1.0.0/aws-ebs-csi-driver-1.0.0.tgz
+    version: 1.0.0
   external-dns:
   - apiVersion: v2
     created: "2025-03-27T22:46:37.565626311Z"
@@ -80,4 +129,32 @@ entries:
     urls:
     - external-dns-1.16.0-0.tgz
     version: 1.16.0-0
-generated: "2025-03-27T22:46:37.565635649Z"
+  - apiVersion: v2
+    created: "2025-04-01T15:20:46.830180906Z"
+    dependencies:
+    - name: external-dns
+      repository: https://kubernetes-sigs.github.io/external-dns/
+      version: 1.16.0
+    description: ExternalDNS synchronizes exposed Kubernetes Services and Ingresses
+      with DNS providers.
+    digest: 10199954207fd9123a9405f1ff27f0b37c8484ad12a5f712f75ba7b3e19624c1
+    home: https://github.com/kubernetes-sigs/external-dns/
+    icon: https://github.com/kubernetes-sigs/external-dns/raw/master/docs/img/external-dns.png
+    keywords:
+    - kubernetes
+    - externaldns
+    - external-dns
+    - dns
+    - service
+    - ingress
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: external-dns
+    sources:
+    - https://github.com/kubernetes-sigs/external-dns/
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/external-dns-1.0.0/external-dns-1.0.0.tgz
+    version: 1.0.0
+generated: "2025-04-01T15:20:46.830197337Z"
