@@ -1,3 +1,201 @@
 apiVersion: v1
-entries: {}
-generated: "2025-04-01T16:44:02.454527+01:00"
+entries:
+  argo-cd:
+  - apiVersion: v2
+    created: "2025-04-01T15:55:26.63535392Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 7.8.14
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 9677c2b45f6b5318a56451a3f8bb6c6a0c0154b2c7bfb45097761fd3c1235e8f
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/argo-cd-0.0.1/argo-cd-0.0.1.tgz
+    version: 0.0.1
+  aws-ebs-csi-driver:
+  - apiVersion: v2
+    created: "2025-04-01T15:55:26.849320217Z"
+    dependencies:
+    - name: aws-ebs-csi-driver
+      repository: https://kubernetes-sigs.github.io/aws-ebs-csi-driver
+      version: 2.41.0
+    description: A Helm chart for AWS EBS CSI Driver
+    digest: 5aa37522ba10f8000a28842757e2b29d252032713b028073d25723e9c1a48255
+    home: https://github.com/kubernetes-sigs/aws-ebs-csi-driver
+    keywords:
+    - aws
+    - ebs
+    - csi
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: aws-ebs-csi-driver
+    sources:
+    - https://github.com/kubernetes-sigs/aws-ebs-csi-driver
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/aws-ebs-csi-driver-0.0.1/aws-ebs-csi-driver-0.0.1.tgz
+    version: 0.0.1
+  aws-load-balancer-controller:
+  - apiVersion: v2
+    created: "2025-04-01T15:55:27.061307808Z"
+    dependencies:
+    - name: aws-load-balancer-controller
+      repository: https://aws.github.io/eks-charts
+      version: 1.11.0
+    description: AWS Load Balancer Controller Helm chart for Kubernetes
+    digest: 3433e60bf99a7bfcaeaef6f18e955f7a0bd43d71ed3fe43c9b14b7d7b8091f94
+    home: https://github.com/aws/eks-charts
+    icon: https://raw.githubusercontent.com/aws/eks-charts/master/docs/logo/aws.png
+    keywords:
+    - eks
+    - alb
+    - load balancer
+    - ingress
+    - nlb
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: aws-load-balancer-controller
+    sources:
+    - https://github.com/aws/eks-charts
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/aws-load-balancer-controller-0.0.1/aws-load-balancer-controller-0.0.1.tgz
+    version: 0.0.1
+  cert-manager:
+  - apiVersion: v2
+    created: "2025-04-01T15:55:27.261195747Z"
+    dependencies:
+    - name: cert-manager
+      repository: https://charts.jetstack.io
+      version: v1.17.1
+    description: A Helm chart for cert-manager
+    digest: 915a262647520c91b648c3eaeeede7b8146531128bbbeb599125c97e7a64d161
+    home: https://cert-manager.io
+    icon: https://raw.githubusercontent.com/cert-manager/community/4d35a69437d21b76322157e6284be4cd64e6d2b7/logo/logo-small.png
+    keywords:
+    - cert-manager
+    - kube-lego
+    - letsencrypt
+    - tls
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@me.com
+      name: mohammadsrahman
+    name: cert-manager
+    sources:
+    - https://github.com/cert-manager/cert-manager
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/cert-manager-0.0.1/cert-manager-0.0.1.tgz
+    version: 0.0.1
+  cluster-autoscaler:
+  - apiVersion: v2
+    created: "2025-04-01T15:55:27.481987167Z"
+    dependencies:
+    - name: cluster-autoscaler
+      repository: https://kubernetes.github.io/autoscaler
+      version: 9.46.3
+    description: Scales Kubernetes worker nodes within autoscaling groups.
+    digest: fa8dfa99841a0d45314f9d6b6e97a732ffc6a8699034ce5d8f94064b7c2c9c56
+    home: https://github.com/kubernetes/autoscaler
+    icon: https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: cluster-autoscaler
+    sources:
+    - https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/cluster-autoscaler-0.0.1/cluster-autoscaler-0.0.1.tgz
+    version: 0.0.1
+  external-dns:
+  - apiVersion: v2
+    created: "2025-04-01T15:55:27.704623959Z"
+    dependencies:
+    - name: external-dns
+      repository: https://kubernetes-sigs.github.io/external-dns/
+      version: 1.16.0
+    description: ExternalDNS synchronizes exposed Kubernetes Services and Ingresses
+      with DNS providers.
+    digest: 3c64615cf56bcada86be903de929bb0a88c0dfb3976c46e702b8a16057839f02
+    home: https://github.com/kubernetes-sigs/external-dns/
+    icon: https://github.com/kubernetes-sigs/external-dns/raw/master/docs/img/external-dns.png
+    keywords:
+    - kubernetes
+    - externaldns
+    - external-dns
+    - dns
+    - service
+    - ingress
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: external-dns
+    sources:
+    - https://github.com/kubernetes-sigs/external-dns/
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/external-dns-0.0.1/external-dns-0.0.1.tgz
+    version: 0.0.1
+  external-secrets:
+  - apiVersion: v2
+    created: "2025-04-01T15:55:27.917641162Z"
+    dependencies:
+    - name: external-secrets
+      repository: https://charts.external-secrets.io/
+      version: 0.14.4
+    description: External secret management for Kubernetes
+    digest: b47a54c4152b4d5136489117886d082332952e1f1c528976cc9bcc99f0dafd11
+    home: https://github.com/external-secrets/external-secrets
+    icon: https://raw.githubusercontent.com/external-secrets/external-secrets/main/assets/eso-logo-large.png
+    keywords:
+    - kubernetes-external-secrets
+    - secrets
+    kubeVersion: '>= 1.19.0-0'
+    maintainers:
+    - email: mohammadsrahman@me.com
+      name: mohammadsrahman
+    name: external-secrets
+    type: application
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/external-secrets-0.0.1/external-secrets-0.0.1.tgz
+    version: 0.0.1
+  secrets-store-csi-driver:
+  - apiVersion: v2
+    created: "2025-04-01T15:55:28.133510765Z"
+    dependencies:
+    - name: secrets-store-csi-driver
+      repository: https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts
+      version: 1.4.8
+    description: A Helm chart to install the SecretsStore CSI Driver inside a Kubernetes
+      cluster.
+    digest: 0a04ecc9791a6627916c25956f6cbe84d26dd4662b660fb2577eec867d9a8a48
+    icon: https://github.com/kubernetes/kubernetes/blob/master/logo/logo.png
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: secrets-store-csi-driver
+    sources:
+    - https://github.com/kubernetes-sigs/secrets-store-csi-driver
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/secrets-store-csi-driver-0.0.1/secrets-store-csi-driver-0.0.1.tgz
+    version: 0.0.1
+generated: "2025-04-01T15:55:28.133518108Z"
