@@ -1,7 +1,6 @@
 apiVersion: v2
 name: external-dns
-# renovate: datasource=helm depName=external-dns registryUrl=https://kubernetes-sigs.github.io/external-dns/
-version: "1.16.0+0"
+version: "1.0.0"
 kubeVersion: '>=1.25.0-0'
 maintainers:
   - name: mohammadsrahman
