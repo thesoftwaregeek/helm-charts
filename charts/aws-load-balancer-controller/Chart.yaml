@@ -1,0 +1,22 @@
+apiVersion: v2
+name: aws-load-balancer-controller
+version: "0.0.1"
+kubeVersion: '>=1.25.0-0'
+maintainers:
+  - name: mohammadsrahman
+    email: mohammadsrahman@users.noreply.github.com
+dependencies:
+  - name: aws-load-balancer-controller
+    version: 1.11.0
+    repository: https://aws.github.io/eks-charts
+description: AWS Load Balancer Controller Helm chart for Kubernetes
+home: https://github.com/aws/eks-charts
+icon: https://raw.githubusercontent.com/aws/eks-charts/master/docs/logo/aws.png
+sources:
+  - https://github.com/aws/eks-charts
+keywords:
+  - eks
+  - alb
+  - load balancer
+  - ingress
+  - nlb
