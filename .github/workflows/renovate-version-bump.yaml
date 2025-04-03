@@ -1,0 +1,103 @@
+name: Renovate Version Bump
+
+on:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - main
+
+jobs:
+  version-bump:
+    if: github.actor == 'renovate[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Parse PR body and bump versions
+        run: |
+          # Get PR body
+          PR_BODY=$(gh pr view ${{ github.event.pull_request.number }} --json body -q .body)
+          echo "PR body: $PR_BODY"
+          
+          # Extract version changes using awk
+          echo "$PR_BODY" | awk '
+          BEGIN { FS="|"; in_table=0 }
+          /\|.*Package.*\|.*Update.*\|.*Change.*\|/ { in_table=1; next }
+          in_table && /^[-|]+$/ { next }
+          in_table && NF>1 {
+            # Clean up fields
+            gsub(/^[[:space:]]+|[[:space:]]+$/, "", $2)  # Package name
+            gsub(/^[[:space:]]+|[[:space:]]+$/, "", $3)  # Update type
+            gsub(/^[[:space:]]+|[[:space:]]+$/, "", $4)  # Version change
+            if ($2 != "") {
+              # Remove any markdown links from package name
+              gsub(/\[|\]|\(.*\)/, "", $2)
+              print $2 "|" $3 "|" $4
+            }
+          }
+          in_table && NF<=1 { in_table=0 }' > version_changes.txt
+          
+          # Process each chart
+          while IFS='|' read -r package update_type version_change; do
+            echo "Processing $package with update $update_type and version change $version_change"
+            
+            # Find the chart directory
+            chart_yaml="charts/$package/Chart.yaml"
+            if [ ! -f "$chart_yaml" ]; then
+              echo "Chart.yaml not found for $package"
+              continue
+            fi
+            
+            # Get current version
+            current_version=$(grep "^version:" "$chart_yaml" | cut -d'"' -f2)
+            echo "Current version: $current_version"
+            
+            # Split version into components
+            IFS='.' read -r major minor patch <<< "$current_version"
+            
+            # Determine bump type based on update_type
+            case $update_type in
+              "major")
+                new_version="$((major + 1)).0.0"
+                ;;
+              "minor")
+                new_version="$major.$((minor + 1)).0"
+                ;;
+              "patch")
+                new_version="$major.$minor.$((patch + 1))"
+                ;;
+              *)
+                # Default to patch bump
+                new_version="$major.$minor.$((patch + 1))"
+                ;;
+            esac
+            
+            echo "New version: $new_version"
+            
+            # Update Chart.yaml with new version
+            sed -i "s/^version:.*/version: \"$new_version\"/" "$chart_yaml"
+            
+            # Stage the changes
+            git add "$chart_yaml"
+          done < version_changes.txt
+          
+          # Commit changes if any were made
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: bump chart versions based on dependency updates"
+            git push origin HEAD:${{ github.head_ref }}
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
