@@ -20,6 +20,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Configure Git
         run: |
@@ -41,20 +42,17 @@ jobs:
             # Clean up fields
             gsub(/^[[:space:]]+|[[:space:]]+$/, "", $2)  # Package name
             gsub(/^[[:space:]]+|[[:space:]]+$/, "", $3)  # Update type
-            gsub(/^[[:space:]]+|[[:space:]]+$/, "", $4)  # Version change
             if ($2 != "") {
               # Remove any markdown links from package name
               gsub(/\[|\]|\(.*\)/, "", $2)
-              # Extract old and new versions
-              split($4, versions, " -> ")
-              print $2 "|" $3 "|" versions[1] "|" versions[2]
+              print $2 "|" $3
             }
           }
           in_table && NF<=1 { in_table=0 }' > version_changes.txt
           
           # Process each chart
-          while IFS='|' read -r package update_type old_version new_version; do
-            echo "Processing $package with update $update_type from $old_version to $new_version"
+          while IFS='|' read -r package update_type; do
+            echo "Processing $package with update type $update_type"
             
             # Find the chart directory
             chart_yaml="charts/$package/Chart.yaml"
@@ -67,21 +65,11 @@ jobs:
             current_version=$(grep "^version:" "$chart_yaml" | cut -d'"' -f2)
             echo "Current version: $current_version"
             
-            # Split versions into components
+            # Split version into components
             IFS='.' read -r major minor patch <<< "$current_version"
-            IFS='.' read -r new_major new_minor new_patch <<< "$new_version"
             
-            # Determine if this is a major, minor, or patch update
-            if [ "$new_major" != "$major" ]; then
-              bump_type="major"
-            elif [ "$new_minor" != "$minor" ]; then
-              bump_type="minor"
-            else
-              bump_type="patch"
-            fi
-            
-            # Bump version based on the actual change
-            case $bump_type in
+            # Bump version based on update type from Renovate
+            case $update_type in
               "major")
                 new_version="$((major + 1)).0.0"
                 ;;
@@ -89,6 +77,10 @@ jobs:
                 new_version="$major.$((minor + 1)).0"
                 ;;
               "patch")
+                new_version="$major.$minor.$((patch + 1))"
+                ;;
+              *)
+                # Default to patch for safety
                 new_version="$major.$minor.$((patch + 1))"
                 ;;
             esac
@@ -102,10 +94,16 @@ jobs:
             git add "$chart_yaml"
           done < version_changes.txt
           
-          # Commit changes if any were made
+          # If there are changes, amend the Renovate commit
           if ! git diff --staged --quiet; then
-            git commit -m "chore: bump chart versions based on dependency updates"
-            git push origin HEAD:${{ github.head_ref }}
+            # Get the current commit message
+            COMMIT_MSG=$(git log -1 --pretty=%B)
+            
+            # Amend the commit with the version bump changes
+            git commit --amend -m "$COMMIT_MSG"
+            
+            # Force push since we amended the commit
+            git push --force origin HEAD:${{ github.event.pull_request.head.ref }}
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
