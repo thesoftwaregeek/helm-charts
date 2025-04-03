@@ -40,10 +40,6 @@
         "helm",
         "docker"
       ],
-      "groupName": "helm-charts",
-      "commitMessagePrefix": "chore(deps):",
-      "commitMessageAction": "update",
-      "commitMessageExtra": "helm chart {{{depName}}} to v{{{newVersion}}}",
       "ignoreUnstable": true
     }
   ]
