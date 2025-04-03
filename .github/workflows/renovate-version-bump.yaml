@@ -45,14 +45,16 @@ jobs:
             if ($2 != "") {
               # Remove any markdown links from package name
               gsub(/\[|\]|\(.*\)/, "", $2)
-              print $2 "|" $3 "|" $4
+              # Extract old and new versions
+              split($4, versions, " -> ")
+              print $2 "|" $3 "|" versions[1] "|" versions[2]
             }
           }
           in_table && NF<=1 { in_table=0 }' > version_changes.txt
           
           # Process each chart
-          while IFS='|' read -r package update_type version_change; do
-            echo "Processing $package with update $update_type and version change $version_change"
+          while IFS='|' read -r package update_type old_version new_version; do
+            echo "Processing $package with update $update_type from $old_version to $new_version"
             
             # Find the chart directory
             chart_yaml="charts/$package/Chart.yaml"
@@ -65,11 +67,21 @@ jobs:
             current_version=$(grep "^version:" "$chart_yaml" | cut -d'"' -f2)
             echo "Current version: $current_version"
             
-            # Split version into components
+            # Split versions into components
             IFS='.' read -r major minor patch <<< "$current_version"
+            IFS='.' read -r new_major new_minor new_patch <<< "$new_version"
             
-            # Determine bump type based on update_type
-            case $update_type in
+            # Determine if this is a major, minor, or patch update
+            if [ "$new_major" != "$major" ]; then
+              bump_type="major"
+            elif [ "$new_minor" != "$minor" ]; then
+              bump_type="minor"
+            else
+              bump_type="patch"
+            fi
+            
+            # Bump version based on the actual change
+            case $bump_type in
               "major")
                 new_version="$((major + 1)).0.0"
                 ;;
@@ -77,10 +89,6 @@ jobs:
                 new_version="$major.$((minor + 1)).0"
                 ;;
               "patch")
-                new_version="$major.$minor.$((patch + 1))"
-                ;;
-              *)
-                # Default to patch bump
                 new_version="$major.$minor.$((patch + 1))"
                 ;;
             esac
