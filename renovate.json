@@ -27,10 +27,7 @@
       "separateMinorPatch": true,
       "separateMajorMinor": true,
       "ignoreDeprecated": true,
-      "minimumReleaseAge": "3 days",
-      "prBodyNotes": [
-        "Version number will be automatically appended with build metadata on merge."
-      ],
+      "minimumReleaseAge": "7 days",
       "matchPackageNames": [
         "/.*/"
       ]
