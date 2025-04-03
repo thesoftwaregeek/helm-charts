@@ -27,7 +27,7 @@
       "separateMinorPatch": true,
       "separateMajorMinor": true,
       "ignoreDeprecated": true,
-      "minimumReleaseAge": "7 days",
+      "minimumReleaseAge": "3 days",
       "matchPackageNames": [
         "/.*/"
       ]

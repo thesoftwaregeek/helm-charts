@@ -1,6 +1,11 @@
 name: Check CODEOWNERS
 
-on: pull_request
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
 jobs:
   build:
     runs-on: ubuntu-latest
