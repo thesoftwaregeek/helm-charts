@@ -23,7 +23,7 @@
         "version:\\s*\"?(?<currentValue>\\d+\\.\\d+\\.\\d+)\"?"
       ],
       "depNameTemplate": "chart-version-{{{parentDir}}}",
-      "datasourceTemplate": "helm",
+      "datasourceTemplate": "custom",
       "versioningTemplate": "semver"
     }
   ],
