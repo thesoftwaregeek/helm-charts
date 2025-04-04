@@ -16,11 +16,20 @@
     "type::{{updateType}}",
     "manager::{{manager}}"
   ],
+  "regexManagers": [
+    {
+      "fileMatch": ["^charts/[^/]+/Chart.yaml$"],
+      "matchStrings": [
+        "version:\\s*\"?(?<currentValue>\\d+\\.\\d+\\.\\d+)\"?"
+      ],
+      "depNameTemplate": "chart-version-{{{parentDir}}}",
+      "datasourceTemplate": "helm",
+      "versioningTemplate": "semver"
+    }
+  ],
   "packageRules": [
     {
-      "matchFileNames": [
-        "charts/**"
-      ],
+      "matchFileNames": ["charts/**"],
       "versioning": "semver",
       "ignoreUnstable": true,
       "rangeStrategy": "bump",
@@ -28,16 +37,29 @@
       "separateMajorMinor": true,
       "ignoreDeprecated": true,
       "minimumReleaseAge": "3 days",
-      "matchPackageNames": [
-        "/.*/"
-      ]
+      "matchPackageNames": ["/.*/"]
     },
     {
-      "matchDatasources": [
-        "helm",
-        "docker"
-      ],
+      "matchDatasources": ["helm", "docker"],
       "ignoreUnstable": true
+    },
+    {
+      "matchPackagePatterns": ["^chart-version-"],
+      "matchUpdateTypes": ["patch"],
+      "bumpVersion": "patch",
+      "semanticCommitScope": "charts"
+    },
+    {
+      "matchPackagePatterns": ["^chart-version-"],
+      "matchUpdateTypes": ["minor"],
+      "bumpVersion": "minor",
+      "semanticCommitScope": "charts"
+    },
+    {
+      "matchPackagePatterns": ["^chart-version-"],
+      "matchUpdateTypes": ["major"],
+      "bumpVersion": "major",
+      "semanticCommitScope": "charts"
     }
   ]
 }
