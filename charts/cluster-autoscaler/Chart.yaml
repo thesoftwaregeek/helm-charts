@@ -7,7 +7,7 @@ maintainers:
     email: mohammadsrahman@users.noreply.github.com
 dependencies:
   - name: cluster-autoscaler
-    version: 9.46.3
+    version: 9.46.6
     repository: https://kubernetes.github.io/autoscaler
 description: Scales Kubernetes worker nodes within autoscaling groups.
 home: https://github.com/kubernetes/autoscaler
