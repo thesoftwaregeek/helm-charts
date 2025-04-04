@@ -94,16 +94,13 @@ jobs:
             git add "$chart_yaml"
           done < version_changes.txt
           
-          # If there are changes, amend the Renovate commit
+          # If there are changes, create a new commit
           if ! git diff --staged --quiet; then
-            # Get the current commit message
-            COMMIT_MSG=$(git log -1 --pretty=%B)
+            # Create a new commit with the version bump changes
+            git commit -m "chore: bump chart versions based on dependency updates"
             
-            # Amend the commit with the version bump changes
-            git commit --amend -m "$COMMIT_MSG"
-            
-            # Force push since we amended the commit
-            git push --force origin HEAD:${{ github.event.pull_request.head.ref }}
+            # Push the new commit
+            git push origin HEAD:${{ github.event.pull_request.head.ref }}
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
