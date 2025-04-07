@@ -7,7 +7,7 @@ maintainers:
     email: mohammadsrahman@users.noreply.github.com
 dependencies:
   - name: argo-cd
-    version: 7.8.14
+    version: 7.8.23
     repository: https://argoproj.github.io/argo-helm
 description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery tool for Kubernetes.
 home: https://github.com/argoproj/argo-helm
