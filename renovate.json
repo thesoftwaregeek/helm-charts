@@ -45,7 +45,6 @@
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["patch"],
       "bumpVersion": "patch",
-      "semanticCommitType": "fix",
       "semanticCommitScope": "{{parentDir}}"
     },
     {
@@ -53,15 +52,13 @@
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["minor"],
       "bumpVersion": "minor",
-      "semanticCommitType": "feat",
       "semanticCommitScope": "{{parentDir}}"
     },
     {
       "matchManagers": ["helmv3"],
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["major"],
-      "bumpVersion": "major",
-      "semanticCommitType": "feat",
+      "bumpVersion": "major",,
       "semanticCommitScope": "{{parentDir}}"
     }
   ]
