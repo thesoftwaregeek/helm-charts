@@ -26,6 +26,7 @@
         "version:\\s*\"?(?<currentValue>\\d+\\.\\d+\\.\\d+(?:[-+].*)?)\"?"
       ],
       "depNameTemplate": "{{parentDir}}",
+      "datasourceTemplate": "helm",
       "versioningTemplate": "semver"
     }
   ],
@@ -40,7 +41,7 @@
   },
   "packageRules": [
     {
-      "matchManagers": ["helm"],
+      "matchManagers": ["helmv3"],
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["patch"],
       "bumpVersion": "patch",
@@ -48,7 +49,7 @@
       "semanticCommitScope": "charts"
     },
     {
-      "matchManagers": ["helm"],
+      "matchManagers": ["helmv3"],
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["minor"],
       "bumpVersion": "minor",
@@ -56,7 +57,7 @@
       "semanticCommitScope": "charts"
     },
     {
-      "matchManagers": ["helm"],
+      "matchManagers": ["helmv3"],
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["major"],
       "bumpVersion": "major",
