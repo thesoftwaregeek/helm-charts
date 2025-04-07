@@ -32,10 +32,10 @@
   ],
   "customDatasources": {
     "helm": {
-      "defaultRegistryUrlTemplate": "",
+      "defaultRegistryUrlTemplate": "https://api.github.com/repos/thesoftwaregeek/helm-charts/releases",
       "format": "json",
       "transformTemplates": [
-        "{ \"releases\": [{ \"version\": \"{{currentValue}}\" }] }"
+        "{ \"releases\": $map($, function($v) { { \"version\": $substring($v.tag_name, $length($v.tag_name) - 5), \"releaseTimestamp\": $v.published_at, \"changelogUrl\": $v.html_url } }) }"
       ]
     }
   },
