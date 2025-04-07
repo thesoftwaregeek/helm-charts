@@ -61,7 +61,7 @@
       "matchManagers": ["helmv3"],
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["major"],
-      "bumpVersion": "major",,
+      "bumpVersion": "major",
       "semanticCommitScope": "{{parentDir}}"
     }
   ]
