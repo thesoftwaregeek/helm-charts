@@ -10,6 +10,9 @@
   "recreateWhen": "always",
   "rebaseWhen": "behind-base-branch",
   "semanticCommits": "enabled",
+  "separateMinorPatch": true,
+  "separateMultipleMajor": true,
+  "separateMultipleMinor": true,
   "labels": [
     "{{depType}}",
     "datasource::{{datasource}}",
