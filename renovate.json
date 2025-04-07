@@ -23,10 +23,9 @@
         "^charts/[^/]+/Chart.yaml$"
       ],
       "matchStrings": [
-        "version:\\s*\"?(?<currentValue>\\d+\\.\\d+\\.\\d+)\"?"
+        "version:\\s*\"?(?<currentValue>\\d+\\.\\d+\\.\\d+(?:[-+].*)?)\"?"
       ],
       "depNameTemplate": "{{parentDir}}",
-      "datasourceTemplate": "custom.helm",
       "versioningTemplate": "semver"
     }
   ],
@@ -41,56 +40,28 @@
   },
   "packageRules": [
     {
-      "matchFileNames": [
-        "charts/**"
-      ],
-      "versioning": "semver",
-      "ignoreUnstable": true,
-      "rangeStrategy": "bump",
-      "separateMinorPatch": true,
-      "separateMajorMinor": true,
-      "ignoreDeprecated": true,
-      "minimumReleaseAge": "3 days",
-      "matchPackageNames": [
-        "/.*/"
-      ]
-    },
-    {
-      "matchDatasources": [
-        "helm",
-        "docker"
-      ],
-      "ignoreUnstable": true
-    },
-    {
-      "matchUpdateTypes": [
-        "patch"
-      ],
+      "matchManagers": ["helm"],
+      "matchDatasources": ["helm"],
+      "matchUpdateTypes": ["patch"],
       "bumpVersion": "patch",
-      "semanticCommitScope": "charts",
-      "matchPackageNames": [
-        "/^chart-version-/"
-      ]
+      "semanticCommitType": "fix",
+      "semanticCommitScope": "charts"
     },
     {
-      "matchUpdateTypes": [
-        "minor"
-      ],
+      "matchManagers": ["helm"],
+      "matchDatasources": ["helm"],
+      "matchUpdateTypes": ["minor"],
       "bumpVersion": "minor",
-      "semanticCommitScope": "charts",
-      "matchPackageNames": [
-        "/^chart-version-/"
-      ]
+      "semanticCommitType": "feat",
+      "semanticCommitScope": "charts"
     },
     {
-      "matchUpdateTypes": [
-        "major"
-      ],
+      "matchManagers": ["helm"],
+      "matchDatasources": ["helm"],
+      "matchUpdateTypes": ["major"],
       "bumpVersion": "major",
-      "semanticCommitScope": "charts",
-      "matchPackageNames": [
-        "/^chart-version-/"
-      ]
+      "semanticCommitType": "feat",
+      "semanticCommitScope": "charts"
     }
   ]
 }
