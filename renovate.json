@@ -26,10 +26,19 @@
         "version:\\s*\"?(?<currentValue>\\d+\\.\\d+\\.\\d+)\"?"
       ],
       "depNameTemplate": "chart-version-{{{parentDir}}}",
-      "datasourceTemplate": "custom",
+      "datasourceTemplate": "custom.helm",
       "versioningTemplate": "semver"
     }
   ],
+  "customDatasources": {
+    "helm": {
+      "defaultRegistryUrlTemplate": "",
+      "format": "json",
+      "transformTemplates": [
+        "{ \"releases\": [{ \"version\": \"{{currentValue}}\" }] }"
+      ]
+    }
+  },
   "packageRules": [
     {
       "matchFileNames": [
