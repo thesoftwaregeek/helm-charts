@@ -53,6 +53,32 @@ entries:
     version: 0.0.1
   aws-load-balancer-controller:
   - apiVersion: v2
+    created: "2025-04-08T08:27:18.509602963Z"
+    dependencies:
+    - name: aws-load-balancer-controller
+      repository: https://aws.github.io/eks-charts
+      version: 1.12.0
+    description: AWS Load Balancer Controller Helm chart for Kubernetes
+    digest: 5d8ba2b751b3b48117eed2545090720880d931ce7498c41fdf4d3cec7457da15
+    home: https://github.com/aws/eks-charts
+    icon: https://raw.githubusercontent.com/aws/eks-charts/master/docs/logo/aws.png
+    keywords:
+    - eks
+    - alb
+    - load balancer
+    - ingress
+    - nlb
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: aws-load-balancer-controller
+    sources:
+    - https://github.com/aws/eks-charts
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/aws-load-balancer-controller-0.1.0/aws-load-balancer-controller-0.1.0.tgz
+    version: 0.1.0
+  - apiVersion: v2
     created: "2025-04-01T15:55:27.061307808Z"
     dependencies:
     - name: aws-load-balancer-controller
@@ -220,4 +246,4 @@ entries:
     urls:
     - https://github.com/thesoftwaregeek/helm-charts/releases/download/secrets-store-csi-driver-0.0.1/secrets-store-csi-driver-0.0.1.tgz
     version: 0.0.1
-generated: "2025-04-08T08:24:01.635062305Z"
+generated: "2025-04-08T08:27:18.509619293Z"
