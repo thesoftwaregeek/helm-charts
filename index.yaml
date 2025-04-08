@@ -132,6 +132,26 @@ entries:
     version: 0.0.1
   cluster-autoscaler:
   - apiVersion: v2
+    created: "2025-04-08T08:31:30.415795045Z"
+    dependencies:
+    - name: cluster-autoscaler
+      repository: https://kubernetes.github.io/autoscaler
+      version: 9.46.6
+    description: Scales Kubernetes worker nodes within autoscaling groups.
+    digest: 09ad1ac714d8a9e1eb51d9b882a34f0955e58e5190a5c9df1874afa00d60d796
+    home: https://github.com/kubernetes/autoscaler
+    icon: https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: cluster-autoscaler
+    sources:
+    - https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/cluster-autoscaler-0.0.2/cluster-autoscaler-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
     created: "2025-04-01T15:55:27.481987167Z"
     dependencies:
     - name: cluster-autoscaler
@@ -246,4 +266,4 @@ entries:
     urls:
     - https://github.com/thesoftwaregeek/helm-charts/releases/download/secrets-store-csi-driver-0.0.1/secrets-store-csi-driver-0.0.1.tgz
     version: 0.0.1
-generated: "2025-04-08T08:27:18.509619293Z"
+generated: "2025-04-08T08:31:30.415809482Z"
