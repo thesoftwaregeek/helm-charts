@@ -176,7 +176,7 @@ jobs:
             exit 1
           fi
           
-          git commit -m "feat(charts): add ${{ github.event.inputs.chart_name }} chart version ${{ github.event.inputs.chart_version }}"
+          git commit -m "feat(${{ github.event.inputs.chart_name }}): add ${{ github.event.inputs.chart_name }} chart version ${{ github.event.inputs.chart_version }}"
           git push origin $BRANCH_NAME
 
       - name: Output PR creation instructions
