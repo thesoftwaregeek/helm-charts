@@ -242,6 +242,49 @@ entries:
     - https://github.com/thesoftwaregeek/helm-charts/releases/download/crossplane-1.19.0/crossplane-1.19.0.tgz
     version: 1.19.0
   - apiVersion: v2
+    created: "2025-04-10T10:11:50.902514044Z"
+    dependencies:
+    - name: crossplane
+      repository: https://charts.crossplane.io/stable
+      version: 1.19.1
+    description: Crossplane is an open source Kubernetes add-on that enables platform
+      teams to assemble infrastructure from multiple vendors, and expose higher level
+      self-service APIs for application teams to consume.
+    digest: 3ac548c3e31fabd289bf4703c860e4a42d48163102c1d5bf237b72e1909f2bd2
+    home: https://crossplane.io
+    icon: https://docs.crossplane.io/android-chrome-192x192.png
+    keywords:
+    - cloud
+    - infrastructure
+    - services
+    - application
+    - database
+    - cache
+    - bucket
+    - infra
+    - app
+    - ops
+    - gcp
+    - azure
+    - aws
+    - alibaba
+    - cloudsql
+    - rds
+    - s3
+    - azuredatabase
+    - asparadb
+    - gke
+    - aks
+    - eks
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: crossplane
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/crossplane-0.1.1/crossplane-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     created: "2025-04-10T10:09:45.248856689Z"
     dependencies:
     - name: crossplane
@@ -379,4 +422,4 @@ entries:
     urls:
     - https://github.com/thesoftwaregeek/helm-charts/releases/download/secrets-store-csi-driver-0.0.1/secrets-store-csi-driver-0.0.1.tgz
     version: 0.0.1
-generated: "2025-04-10T10:09:45.248869663Z"
+generated: "2025-04-10T10:11:50.902556323Z"
