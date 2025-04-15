@@ -419,6 +419,33 @@ entries:
     urls:
     - https://github.com/thesoftwaregeek/helm-charts/releases/download/kyverno-0.1.0/kyverno-0.1.0.tgz
     version: 0.1.0
+  kyverno-policies:
+  - apiVersion: v2
+    created: "2025-04-15T13:38:41.250264087Z"
+    dependencies:
+    - name: kyverno-policies
+      repository: https://kyverno.github.io/kyverno/
+      version: 3.3.4
+    description: Kubernetes Pod Security Standards implemented as Kyverno policies
+    digest: e0c5d566a13ce0a6f3a48f2e78fc0124be31d007b79df1595c9b199ada75cde8
+    home: https://kyverno.io/policies/
+    icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
+    keywords:
+    - kubernetes
+    - nirmata
+    - policy agent
+    - validating webhook
+    - admissions controller
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: kyverno-policies
+    sources:
+    - https://github.com/kyverno/policies
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/kyverno-policies-0.1.0/kyverno-policies-0.1.0.tgz
+    version: 0.1.0
   secrets-store-csi-driver:
   - apiVersion: v2
     created: "2025-04-01T15:55:28.133510765Z"
@@ -440,4 +467,4 @@ entries:
     urls:
     - https://github.com/thesoftwaregeek/helm-charts/releases/download/secrets-store-csi-driver-0.0.1/secrets-store-csi-driver-0.0.1.tgz
     version: 0.0.1
-generated: "2025-04-15T13:37:51.333316523Z"
+generated: "2025-04-15T13:38:41.250285286Z"
