@@ -1,0 +1,60 @@
+# -- Deploy Argo CD Applications within this helm release
+# @default -- `{}` (See [values.yaml])
+applications:
+  # -- Enable or disable the external-secrets application
+  # @default -- false
+  external-secrets:
+    enabled: true
+    # -- Namespace where the Argo CD Application will be created
+    namespace: argocd
+    # -- Additional labels to add to the Argo CD Application
+    additionalLabels: {}
+    # -- Additional annotations to add to the Argo CD Application
+    additionalAnnotations: {}
+    # -- Finalizers for the Argo CD Application
+    finalizers:
+    - resources-finalizer.argocd.argoproj.io
+    # -- Project name in Argo CD
+    project: default
+    # -- Source configuration for the application
+    source:
+      chart: external-secrets
+      repoURL: ghcr.io/thesoftwaregeek/charts
+      targetRevision: 0.0.1
+    # -- Destination configuration for the application
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: external-secrets
+    # -- Sync policy configuration
+    syncPolicy:
+      automated:
+        prune: false
+        selfHeal: false
+      syncOptions:
+      - CreateNamespace=true
+    revisionHistoryLimit: null
+
+  # -- Enable or disable the cert-manager application
+  # @default -- false
+  cert-manager:
+    enabled: false
+    namespace: argocd
+    additionalLabels: {}
+    additionalAnnotations: {}
+    finalizers:
+    - resources-finalizer.argocd.argoproj.io
+    project: default
+    source:
+      chart: cert-manager
+      repoURL: ghcr.io/thesoftwaregeek/charts
+      targetRevision: 0.0.1
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: cert-manager
+    syncPolicy:
+      automated:
+        prune: false
+        selfHeal: false
+      syncOptions:
+      - CreateNamespace=true
+    revisionHistoryLimit: null
