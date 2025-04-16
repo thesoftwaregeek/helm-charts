@@ -183,6 +183,17 @@ entries:
     urls:
     - https://github.com/thesoftwaregeek/helm-charts/releases/download/cert-manager-0.0.1/cert-manager-0.0.1.tgz
     version: 0.0.1
+  cluster-addons:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-04-16T13:00:59.192283577Z"
+    description: A Helm chart for Kubernetes
+    digest: 59c5cc7d3846d2d4c7302721231cb77fb14d5ce49d952ecc11e7a761469cac9c
+    name: cluster-addons
+    type: application
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/cluster-addons-0.1.0/cluster-addons-0.1.0.tgz
+    version: 0.1.0
   cluster-autoscaler:
   - apiVersion: v2
     created: "2025-04-08T08:31:30.415795045Z"
@@ -467,4 +478,4 @@ entries:
     urls:
     - https://github.com/thesoftwaregeek/helm-charts/releases/download/secrets-store-csi-driver-0.0.1/secrets-store-csi-driver-0.0.1.tgz
     version: 0.0.1
-generated: "2025-04-15T13:38:41.250285286Z"
+generated: "2025-04-16T13:00:59.192306169Z"
