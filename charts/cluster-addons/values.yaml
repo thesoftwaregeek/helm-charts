@@ -1,0 +1,24 @@
+# -- Deploy Argo CD Applications within this helm release
+# @default -- `{}` (See [values.yaml])
+applications: {}
+#  external-secrets:
+#    namespace: argocd
+#    additionalLabels: {}
+#    additionalAnnotations: {}
+#    finalizers:
+#    - resources-finalizer.argocd.argoproj.io
+#    project: default
+#    source:
+#      chart: external-secrets
+#      repoURL: ghcr.io/thesoftwaregeek/charts
+#      targetRevision: 0.0.1
+#    destination:
+#      server: https://kubernetes.default.svc
+#      namespace: external-secrets
+#    syncPolicy:
+#      automated:
+#        prune: false
+#        selfHeal: false
+#      syncOptions:
+#      - CreateNamespace=true
+#    revisionHistoryLimit: null
