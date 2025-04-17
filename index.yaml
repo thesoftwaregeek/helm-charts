@@ -376,6 +376,34 @@ entries:
     version: 0.1.0
   external-dns:
   - apiVersion: v2
+    created: "2025-04-17T22:54:27.83123944Z"
+    dependencies:
+    - name: external-dns
+      repository: https://kubernetes-sigs.github.io/external-dns/
+      version: 1.16.1
+    description: ExternalDNS synchronizes exposed Kubernetes Services and Ingresses
+      with DNS providers.
+    digest: baea4c39548702b167b3128f9162eddde71882924a42c8413cfa44cf0a22c832
+    home: https://github.com/kubernetes-sigs/external-dns/
+    icon: https://github.com/kubernetes-sigs/external-dns/raw/master/docs/img/external-dns.png
+    keywords:
+    - kubernetes
+    - externaldns
+    - external-dns
+    - dns
+    - service
+    - ingress
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: external-dns
+    sources:
+    - https://github.com/kubernetes-sigs/external-dns/
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/external-dns-0.0.2/external-dns-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
     created: "2025-04-01T15:55:27.704623959Z"
     dependencies:
     - name: external-dns
@@ -552,4 +580,4 @@ entries:
     urls:
     - https://github.com/thesoftwaregeek/helm-charts/releases/download/secrets-store-csi-driver-0.0.1/secrets-store-csi-driver-0.0.1.tgz
     version: 0.0.1
-generated: "2025-04-17T22:52:48.552019385Z"
+generated: "2025-04-17T22:54:27.831271179Z"
