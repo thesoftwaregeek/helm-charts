@@ -1,13 +1,13 @@
 apiVersion: v2
 name: external-dns
-version: "0.0.1"
+version: 0.0.2
 kubeVersion: '>=1.25.0-0'
 maintainers:
   - name: mohammadsrahman
     email: mohammadsrahman@users.noreply.github.com
 dependencies:
   - name: external-dns
-    version: 1.16.0
+    version: 1.16.1
     repository: https://kubernetes-sigs.github.io/external-dns/
 description: ExternalDNS synchronizes exposed Kubernetes Services and Ingresses with DNS providers.
 home: https://github.com/kubernetes-sigs/external-dns/
