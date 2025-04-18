@@ -2,6 +2,32 @@ apiVersion: v1
 entries:
   argo-cd:
   - apiVersion: v2
+    created: "2025-04-18T08:00:52.366875365Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 7.8.26
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: bc7855855eb2fada7aa9b52569edfd5e9d12e545f68eb67ea00db49c563c65b6
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/argo-cd-0.0.4/argo-cd-0.0.4.tgz
+    version: 0.0.4
+  - apiVersion: v2
     created: "2025-04-17T22:50:59.599150966Z"
     dependencies:
     - name: argo-cd
@@ -80,6 +106,32 @@ entries:
     - https://github.com/thesoftwaregeek/helm-charts/releases/download/argo-cd-0.0.1/argo-cd-0.0.1.tgz
     version: 0.0.1
   argocd:
+  - apiVersion: v2
+    created: "2025-04-18T08:00:52.511088257Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 7.8.26
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 5a54e90ce88431937516a6f47989d4669cee62a0e9841051f87049532d60a8d3
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: argocd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/argocd-0.0.3/argocd-0.0.3.tgz
+    version: 0.0.3
   - apiVersion: v2
     created: "2025-04-17T22:50:59.836028154Z"
     dependencies:
@@ -580,4 +632,4 @@ entries:
     urls:
     - https://github.com/thesoftwaregeek/helm-charts/releases/download/secrets-store-csi-driver-0.0.1/secrets-store-csi-driver-0.0.1.tgz
     version: 0.0.1
-generated: "2025-04-17T22:54:27.831271179Z"
+generated: "2025-04-18T08:00:52.511130326Z"
