@@ -20,6 +20,6 @@ chart-repos:
   - argo-cd=https://argoproj.github.io/argo-helm
   - kyverno=https://kyverno.github.io/kyverno/
 helm-repo-extra-args:
-  thesoftwaregeek: --username ${{ secrets.GITHUB_TOKEN }} --password ${{ secrets.GITHUB_TOKEN }}
+  - thesoftwaregeek=--username ${{ secrets.GITHUB_TOKEN }} --password ${{ secrets.GITHUB_TOKEN }}
 github-groups: true
 validate-maintainers: false
