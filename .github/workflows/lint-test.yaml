@@ -35,7 +35,6 @@ jobs:
             echo "changed=true" >> "$GITHUB_OUTPUT"
             echo "changed_list=\"${changed//$'\n'/ }\"" >> "$GITHUB_OUTPUT"
           fi
-
       # - name: install helm unittest plugin
       #   if: steps.list-changed.outputs.changed == 'true'
       #   run: |
@@ -44,6 +43,17 @@ jobs:
 
       - name: Run chart-testing (lint)
         run: ct lint --config .github/linters/ct.yaml --helm-repo-extra-args "thesoftwaregeek=--username ${{ secrets.GITHUB_TOKEN }} --password ${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Run Trivy Vulnerability Scanner
+        if: steps.list-changed.outputs.changed == 'true'
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: 'fs'
+          scan-ref: '${{ format(''charts/{0}'', steps.list-changed.outputs.changed_list) }}'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          severity: 'MEDIUM,HIGH,CRITICAL'
 
 #      - name: Create kind cluster
 #        uses: helm/kind-action@a1b0e391336a6ee6713a0583f8c6240d70863de3 # v1.12.0
