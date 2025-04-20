@@ -19,7 +19,6 @@ chart-repos:
   - istio=https://istio-release.storage.googleapis.com/charts
   - argo-cd=https://argoproj.github.io/argo-helm
   - kyverno=https://kyverno.github.io/kyverno/
-helm-repo-extra-args:
-  - thesoftwaregeek=--username ${{ secrets.GITHUB_TOKEN }} --password ${{ secrets.GITHUB_TOKEN }}
 github-groups: true
+helm-extra-args: --timeout 600s
 validate-maintainers: false
