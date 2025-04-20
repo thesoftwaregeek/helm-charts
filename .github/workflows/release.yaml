@@ -43,7 +43,7 @@ jobs:
           CR_GENERATE_RELEASE_NOTES: true
 
       - name: Run Trivy Vulnerability Scanner (Table)
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@18f2510ee396bbf400402947b394f2dd8c87dbb0 # 0.29.0
         if: ${{ steps.release.outputs.changed_charts != '' }}
         with:
           scan-type: 'rootfs'
@@ -54,7 +54,7 @@ jobs:
           severity: 'MEDIUM,HIGH,CRITICAL'
 
       - name: Run Trivy Vulnerability Scanner (SARIF)
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@18f2510ee396bbf400402947b394f2dd8c87dbb0 # 0.29.0
         if: ${{ steps.release.outputs.changed_charts }}
         with:
           scan-type: 'rootfs'
