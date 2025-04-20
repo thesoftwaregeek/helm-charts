@@ -50,7 +50,7 @@ jobs:
         with:
           scan-type: 'config'
           hide-progress: false
-          scan-ref: ${{ steps.list-changed.outputs.changed_list }}
+          scan-ref: charts/
           format: 'sarif'
           output: 'trivy-results.sarif'
           exit-code: '1'
