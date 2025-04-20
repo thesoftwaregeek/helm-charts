@@ -32,35 +32,21 @@ jobs:
         with:
           version: v3.12.0
 
-      - name: Set up chart-testing
-        uses: helm/chart-testing-action@0d28d3144d3a25ea2cc349d6e59901c4ff469b3b # v2.7.0
+      - name: Run chart-releaser
+        id: chart-releaser
+        uses: helm/chart-releaser-action@cae68fefc6b5f367a0275617c9f83181ba54714f # v1.7.0
+        with:
+          skip_existing: true
+          charts_dir: ./charts
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_GENERATE_RELEASE_NOTES: true
 
-      - name: Run chart-testing (list-changed)
-        id: list-changed
+      - name: List Charts Built Recursively
         run: |
-          changed="$(ct list-changed --config .github/linters/ct.yaml)"
-          if [[ -n "$changed" ]]; then
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-            echo "changed_list=\"${changed//$'\n'/ }\"" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Build Helm Chart
-        if: steps.list-changed.outputs.changed_charts != ''
-        run: |
-          # Get the list of changed charts from chart-testing
-          CHANGED_CHARTS=$(echo "${{ steps.list-changed.outputs.changed_charts }}" | tr ' ' '\n')
-          
-          for chart in $CHANGED_CHARTS; do
-            if [ -d "charts/$chart" ]; then
-              echo "Building dependencies for chart: $chart"
-              helm dependency build "charts/$chart"
-              echo "Packaging chart: $chart"
-              helm package "charts/$chart" -d .cr-release-packages/
-            fi
-          done
+          ls -la .cr-release-packages/
 
       - name: Install Trivy
-        if: steps.list-changed.outputs.changed_charts != ''
         uses: aquasecurity/trivy-action@0.28.0
         with:
           scan-type: 'fs'
@@ -72,25 +58,11 @@ jobs:
           severity: 'MEDIUM,HIGH,CRITICAL'
 
       - name: Upload Trivy scan results to GitHub Security tab
-        if: steps.list-changed.outputs.changed_charts != ''
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: 'trivy-results.sarif'
 
-      - name: Run chart-releaser
-        id: chart-releaser
-        if: steps.list-changed.outputs.changed_charts != ''
-        uses: helm/chart-releaser-action@cae68fefc6b5f367a0275617c9f83181ba54714f # v1.7.0
-        with:
-          skip_packaging: true
-          skip_existing: true
-          charts_dir: ./charts
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          CR_GENERATE_RELEASE_NOTES: true
-
       - name: Login to GitHub Container Registry
-        if: steps.list-changed.outputs.changed_charts != ''
         uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3.4.0
         with:
           registry: ghcr.io
@@ -98,17 +70,14 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Cosign
-        if: steps.list-changed.outputs.changed_charts != ''
         uses: sigstore/cosign-installer@d7d6bc7722e3daa8354c50bcb52f4837da5e9b6a # v3.8.1
         with:
           cosign-release: 'v2.4.3'
       
       - name: Check cosign installation
-        if: steps.list-changed.outputs.changed_charts != ''
         run: cosign version
 
       - name: Push charts to GHCR and sign
-        if: steps.list-changed.outputs.changed_charts != ''
         run: |
           shopt -s nullglob
           for pkg in .cr-release-packages/*; do
