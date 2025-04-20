@@ -186,6 +186,29 @@ entries:
     version: 0.0.1
   aws-ebs-csi-driver:
   - apiVersion: v2
+    created: "2025-04-20T18:26:37.735693795Z"
+    dependencies:
+    - name: aws-ebs-csi-driver
+      repository: https://kubernetes-sigs.github.io/aws-ebs-csi-driver
+      version: 2.42.0
+    description: A Helm chart for AWS EBS CSI Driver
+    digest: f0d4c0d60e2d596f1c7d89151225e3d297fa2c22d25421045aaf4e825c1d89b2
+    home: https://github.com/kubernetes-sigs/aws-ebs-csi-driver
+    keywords:
+    - aws
+    - ebs
+    - csi
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: aws-ebs-csi-driver
+    sources:
+    - https://github.com/kubernetes-sigs/aws-ebs-csi-driver
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/aws-ebs-csi-driver-0.1.0/aws-ebs-csi-driver-0.1.0.tgz
+    version: 0.1.0
+  - apiVersion: v2
     created: "2025-04-01T15:55:26.849320217Z"
     dependencies:
     - name: aws-ebs-csi-driver
@@ -654,4 +677,4 @@ entries:
     urls:
     - https://github.com/thesoftwaregeek/helm-charts/releases/download/secrets-store-csi-driver-0.0.1/secrets-store-csi-driver-0.0.1.tgz
     version: 0.0.1
-generated: "2025-04-20T18:04:25.007436846Z"
+generated: "2025-04-20T18:26:37.735731335Z"
