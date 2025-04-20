@@ -32,17 +32,16 @@ jobs:
         with:
           version: v3.12.0
 
-      - name: Install chart-testing
-        uses: helm/chart-testing-action@v2.6.0
-        with:
-          version: v3.10.0
+      - name: Set up chart-testing
+        uses: helm/chart-testing-action@0d28d3144d3a25ea2cc349d6e59901c4ff469b3b # v2.7.0
 
       - name: Run chart-testing (list-changed)
         id: list-changed
         run: |
-          changed=$(ct list-changed)
-          if [ -n "$changed" ]; then
-            echo "changed_charts=$changed" >> $GITHUB_OUTPUT
+          changed="$(ct list-changed --config .github/linters/ct.yaml)"
+          if [[ -n "$changed" ]]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "changed_list=\"${changed//$'\n'/ }\"" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Build Helm Chart
