@@ -46,7 +46,18 @@ jobs:
         run: |
           ls -la .cr-release-packages/
 
-      - name: Install Trivy
+      - name: Run Trivy Vulnerability Scanner (Table)
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: 'fs'
+          scan-ref: '.cr-release-packages/'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'MEDIUM,HIGH,CRITICAL'
+
+      - name: Run Trivy Vulnerability Scanner (SARIF)
         uses: aquasecurity/trivy-action@0.28.0
         with:
           scan-type: 'fs'
@@ -58,6 +69,7 @@ jobs:
           severity: 'MEDIUM,HIGH,CRITICAL'
 
       - name: Upload Trivy scan results to GitHub Security tab
+        # if: always()
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: 'trivy-results.sarif'
