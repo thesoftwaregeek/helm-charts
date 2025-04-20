@@ -485,6 +485,28 @@ entries:
     version: 0.0.1
   external-secrets:
   - apiVersion: v2
+    created: "2025-04-20T18:04:25.007374529Z"
+    dependencies:
+    - name: external-secrets
+      repository: https://charts.external-secrets.io/
+      version: 0.16.1
+    description: External secret management for Kubernetes
+    digest: f89a588306888d4b812d0a042caa7ae03613c7b62c5189b5ba0a98e5963ad577
+    home: https://github.com/external-secrets/external-secrets
+    icon: https://raw.githubusercontent.com/external-secrets/external-secrets/main/assets/eso-logo-large.png
+    keywords:
+    - kubernetes-external-secrets
+    - secrets
+    kubeVersion: '>= 1.19.0-0'
+    maintainers:
+    - email: mohammadsrahman@me.com
+      name: mohammadsrahman
+    name: external-secrets
+    type: application
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/external-secrets-0.2.1/external-secrets-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
     created: "2025-04-17T22:52:48.551984991Z"
     dependencies:
     - name: external-secrets
@@ -632,4 +654,4 @@ entries:
     urls:
     - https://github.com/thesoftwaregeek/helm-charts/releases/download/secrets-store-csi-driver-0.0.1/secrets-store-csi-driver-0.0.1.tgz
     version: 0.0.1
-generated: "2025-04-18T08:00:52.511130326Z"
+generated: "2025-04-20T18:04:25.007436846Z"
