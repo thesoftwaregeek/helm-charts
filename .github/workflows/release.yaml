@@ -96,6 +96,13 @@ jobs:
             cosign sign --yes --recursive "${ref}"
           done
 
+      - name: List Changed Charts
+        if: steps.chart-releaser.outputs.changed_charts != ''
+        run: |
+          echo "Changed Charts: ${{ steps.chart-releaser.outputs.changed_charts }}"
+          echo "Chart Version: ${{ steps.chart-releaser.outputs.chart_version }}"
+
+
       - name: Run Trivy Vulnerability Scanner
         if: steps.chart-releaser.outputs.changed_charts != ''
         uses: aquasecurity/trivy-action@6c175e9c4083a92bbca2f9724c8a5e33bc2d97a5 # 0.30.0
@@ -105,7 +112,7 @@ jobs:
           version: latest
           scan-type: 'image'
           hide-progress: false
-          scan-ref: ghcr.io/${{ github.repository_owner }}/charts/${{ steps.chart-releaser.outputs.changed_charts }}
+          scan-ref: ghcr.io/${{ github.repository_owner }}/${{ steps.chart-releaser.outputs.changed_charts }}
           format: 'sarif'
           output: 'trivy-results.sarif'
           ignore-unfixed: true
