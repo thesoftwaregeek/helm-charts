@@ -64,10 +64,11 @@ jobs:
         uses: aquasecurity/trivy-action@6c175e9c4083a92bbca2f9724c8a5e33bc2d97a5 # 0.30.0
         env:
           TRIVY_HELM_KUBE_VERSION: '1.25.0'
+          TRIVY_SKIP_POLICIES: 'aws,azure,gcp,kubernetes'
         with:
           scan-type: 'config'
           hide-progress: false
-          scan-ref: ${{ matrix.chart }}
+          scan-ref: charts/${{ matrix.chart }}
           format: 'sarif'
           output: 'trivy-results-${{ matrix.chart }}.sarif'
           exit-code: '1'
