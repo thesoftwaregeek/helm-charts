@@ -100,6 +100,8 @@ jobs:
       - name: Scan container images
         if: ${{ steps.release.outputs.changed_charts }}
         uses: aquasecurity/trivy-action@6c175e9c4083a92bbca2f9724c8a5e33bc2d97a5 # 0.30.0
+        env:
+          TRIVY_HELM_KUBE_VERSION: '>=1.25.0'
         with:
           scan-type: 'config'
           hide-progress: false
