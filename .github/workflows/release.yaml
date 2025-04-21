@@ -103,16 +103,16 @@ jobs:
           TRIVY_HELM_KUBE_VERSION: '1.25.0'
         with:
           version: latest
-          scan-type: 'config'
+          scan-type: 'image'
           hide-progress: false
-          scan-ref: ${{ steps.chart-releaser.outputs.changed_charts }}
+          scan-ref: ghcr.io/${{ github.repository_owner }}/charts/${{ steps.chart-releaser.outputs.changed_charts }}
           format: 'sarif'
           output: 'trivy-results.sarif'
           ignore-unfixed: true
           severity: 'MEDIUM,HIGH,CRITICAL'
 
       - name: Upload Trivy scan results to GitHub Security tab
-        if: steps.list-changed.outputs.changed == 'true'
+        if: steps.chart-releaser.outputs.changed_charts != ''
         uses: github/codeql-action/upload-sarif@45775bd8235c68ba998cffa5171334d58593da47 # v3.28.15
         with:
           sarif_file: 'trivy-results.sarif'
