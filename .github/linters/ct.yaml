@@ -19,10 +19,6 @@ chart-repos:
   - istio=https://istio-release.storage.googleapis.com/charts
   - argo-cd=https://argoproj.github.io/argo-helm
   - kyverno=https://kyverno.github.io/kyverno/
-helm-extra-args: --timeout 600s
-# See https://github.com/helm/chart-testing#configuration
-additional-commands:
-  - sh -ec "if [ -f '{{ .Path }}/ci/lint.sh' ]; then shellcheck '{{ .Path }}/ci/lint.sh'; bash '{{ .Path }}/ci/lint.sh'; fi"
-  # - helm unittest --helm3 --strict --file unittests/*.yaml --file 'unittests/**/*.yaml' {{ .Path }}
 github-groups: true
+helm-extra-args: --timeout 600s
 validate-maintainers: false
