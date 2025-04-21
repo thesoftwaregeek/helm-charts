@@ -34,8 +34,10 @@ jobs:
           if [[ -n "$changed" ]]; then
             echo "changed=true" >> "$GITHUB_OUTPUT"
             echo "changed_list=\"${changed//$'\n'/ }\"" >> "$GITHUB_OUTPUT"
+            # Convert to JSON array for matrix
+            json_array=$(jq -c -R -s 'split("\n") | map(select(. != ""))' <<< "$changed")
+            echo "changed_list_json=$json_array" >> "$GITHUB_OUTPUT"
           fi
-
       # - name: install helm unittest plugin
       #   if: steps.list-changed.outputs.changed == 'true'
       #   run: |
@@ -43,7 +45,26 @@ jobs:
       #     helm plugin install https://github.com/quintush/helm-unittest.git --version 0.2.8
 
       - name: Run chart-testing (lint)
-        run: ct lint --config .github/linters/ct.yaml
+        run: ct lint --config .github/linters/ct.yaml --helm-repo-extra-args "thesoftwaregeek=--username ${{ secrets.GITHUB_TOKEN }} --password ${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Run Trivy Vulnerability Scanner
+        if: steps.list-changed.outputs.changed == 'true'
+        uses: aquasecurity/trivy-action@6c175e9c4083a92bbca2f9724c8a5e33bc2d97a5 # 0.30.0
+        with:
+          scan-type: 'config'
+          hide-progress: false
+          scan-ref: ${{ steps.list-changed.outputs.changed_list }}
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          exit-code: '1'
+          ignore-unfixed: true
+          severity: 'MEDIUM,HIGH,CRITICAL'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        if: steps.list-changed.outputs.changed == 'true'
+        uses: github/codeql-action/upload-sarif@312e093a1892bd801f026f1090904ee8e460b9b6 # v2.1.34
+        with:
+          sarif_file: 'trivy-results.sarif'
 
 #      - name: Create kind cluster
 #        uses: helm/kind-action@a1b0e391336a6ee6713a0583f8c6240d70863de3 # v1.12.0

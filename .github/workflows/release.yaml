@@ -12,6 +12,7 @@ jobs:
       contents: write # to push chart release and create a release (helm/chart-releaser-action)
       packages: write # needed for ghcr access
       id-token: write # needed for keyless signing
+      security-events: write # needed to upload SARIF files to security tab
 
     runs-on: ubuntu-24.04
     steps:
@@ -41,8 +42,37 @@ jobs:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           CR_GENERATE_RELEASE_NOTES: true
 
+      - name: Run Trivy Vulnerability Scanner (Table)
+        uses: aquasecurity/trivy-action@6c175e9c4083a92bbca2f9724c8a5e33bc2d97a5 # 0.30.0
+        if: ${{ steps.release.outputs.changed_charts != '' }}
+        with:
+          scan-type: 'rootfs'
+          scan-ref: '.cr-release-packages/*.tgz'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          severity: 'MEDIUM,HIGH,CRITICAL'
+
+      - name: Run Trivy Vulnerability Scanner (SARIF)
+        uses: aquasecurity/trivy-action@6c175e9c4083a92bbca2f9724c8a5e33bc2d97a5 # 0.30.0
+        if: ${{ steps.release.outputs.changed_charts }}
+        with:
+          scan-type: 'rootfs'
+          scan-ref: '.cr-release-packages/*.tgz'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          exit-code: '1'
+          ignore-unfixed: true
+          severity: 'MEDIUM,HIGH,CRITICAL'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        if: ${{ steps.release.outputs.changed_charts }}
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: 'trivy-results.sarif'
+
       - name: Login to GitHub Container Registry
-        if: steps.chart-releaser.outputs.changed_charts != ''
+        if: ${{ steps.release.outputs.changed_charts }}
         uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3.4.0
         with:
           registry: ghcr.io
@@ -50,17 +80,17 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Cosign
-        if: steps.chart-releaser.outputs.changed_charts != ''
+        if: ${{ steps.release.outputs.changed_charts }}
         uses: sigstore/cosign-installer@d7d6bc7722e3daa8354c50bcb52f4837da5e9b6a # v3.8.1
         with:
           cosign-release: 'v2.4.3'
       
       - name: Check cosign installation
-        if: steps.chart-releaser.outputs.changed_charts != ''
+        if: ${{ steps.release.outputs.changed_charts }}
         run: cosign version
 
       - name: Push charts to GHCR and sign
-        if: steps.chart-releaser.outputs.changed_charts != ''
+        if: ${{ steps.release.outputs.changed_charts }}
         run: |
           shopt -s nullglob
           for pkg in .cr-release-packages/*; do
