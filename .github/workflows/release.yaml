@@ -81,7 +81,7 @@ jobs:
       - name: Push chart to GHCR and sign
         run: |
           # Push the chart and capture both stdout and stderr
-          output=$(helm push "charts/${{ matrix.chart }}" "oci://ghcr.io/${GITHUB_REPOSITORY_OWNER}/charts" 2>&1)
+          output=$(helm push "${{ matrix.chart }}" "oci://ghcr.io/${GITHUB_REPOSITORY_OWNER}/charts" 2>&1)
           echo "Full output:"
           echo "$output"
           
@@ -108,6 +108,9 @@ jobs:
           # Sign the chart with keyless signing
           cosign sign --yes --recursive "${ref}"
 
+      - name: Create results directory
+        run: mkdir -p trivy-results/charts
+
       - name: Scan chart
         uses: aquasecurity/trivy-action@6c175e9c4083a92bbca2f9724c8a5e33bc2d97a5 # 0.30.0
         env:
@@ -116,9 +119,9 @@ jobs:
         with:
           scan-type: 'config'
           hide-progress: false
-          scan-ref: charts/${{ matrix.chart }}
+          scan-ref: ${{ matrix.chart }}
           format: 'sarif'
-          output: 'trivy-results-${{ matrix.chart }}.sarif'
+          output: 'trivy-results/${{ matrix.chart }}.sarif'
           exit-code: '1'
           ignore-unfixed: true
           severity: 'MEDIUM,HIGH,CRITICAL'
