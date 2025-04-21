@@ -61,8 +61,10 @@ jobs:
 
       - name: Push charts to GHCR and sign
         if: steps.chart-releaser.outputs.changed_charts != ''
+        id: push-charts
         run: |
           shopt -s nullglob
+          oci_refs=""
           for pkg in .cr-release-packages/*; do
             if [ -z "${pkg:-}" ]; then
               break
@@ -94,14 +96,21 @@ jobs:
             
             # Sign the chart with keyless signing
             cosign sign --yes --recursive "${ref}"
+
+            # Add to OCI references list
+            if [ -z "$oci_refs" ]; then
+              oci_refs="$ref"
+            else
+              oci_refs="$oci_refs,$ref"
+            fi
           done
+          echo "oci_refs=$oci_refs" >> $GITHUB_OUTPUT
 
       - name: List Changed Charts
         if: steps.chart-releaser.outputs.changed_charts != ''
         run: |
           echo "Changed Charts: ${{ steps.chart-releaser.outputs.changed_charts }}"
           echo "Chart Version: ${{ steps.chart-releaser.outputs.chart_version }}"
-
 
       - name: Run Trivy Vulnerability Scanner
         if: steps.chart-releaser.outputs.changed_charts != ''
@@ -112,7 +121,7 @@ jobs:
           version: latest
           scan-type: 'image'
           hide-progress: false
-          scan-ref: ghcr.io/${{ github.repository_owner }}/${{ steps.chart-releaser.outputs.changed_charts }}
+          scan-ref: ${{ steps.push-charts.outputs.oci_refs }}
           format: 'sarif'
           output: 'trivy-results.sarif'
           ignore-unfixed: true
