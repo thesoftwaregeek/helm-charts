@@ -95,3 +95,24 @@ jobs:
             # Sign the chart with keyless signing
             cosign sign --yes --recursive "${ref}"
           done
+
+      - name: Run Trivy Vulnerability Scanner
+        if: steps.chart-releaser.outputs.changed_charts != ''
+        uses: aquasecurity/trivy-action@6c175e9c4083a92bbca2f9724c8a5e33bc2d97a5 # 0.30.0
+        env:
+          TRIVY_HELM_KUBE_VERSION: '1.25.0'
+        with:
+          version: latest
+          scan-type: 'config'
+          hide-progress: false
+          scan-ref: ${{ steps.chart-releaser.outputs.changed_charts }}
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          ignore-unfixed: true
+          severity: 'MEDIUM,HIGH,CRITICAL'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        if: steps.list-changed.outputs.changed == 'true'
+        uses: github/codeql-action/upload-sarif@45775bd8235c68ba998cffa5171334d58593da47 # v3.28.15
+        with:
+          sarif_file: 'trivy-results.sarif'
