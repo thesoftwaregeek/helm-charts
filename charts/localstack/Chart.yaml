@@ -1,0 +1,19 @@
+apiVersion: v2
+name: localstack
+version: 0.1.0
+dependencies:
+- name: localstack
+  repository: https://localstack.github.io/helm-charts
+  version: 0.6.24
+description: Localstack for Kubernetes
+home: https://github.com/localstack/localstack
+icon: https://raw.githubusercontent.com/localstack/localstack/main/assets/eso-logo-large.png
+keywords:
+- kubernetes-localstack
+- localstack
+kubeVersion: '>= 1.20.0-0'
+maintainers:
+  - name: mohammadsrahman
+    email: mohammadsrahman@users.noreply.github.com
+type: application
+appVersion: latest
