@@ -6,3 +6,4 @@
 
 # Chart dependencies
 /charts/*/charts
+/charts/*/Chart.lock

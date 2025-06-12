@@ -20,6 +20,7 @@ chart-repos:
   - argo-cd=https://argoproj.github.io/argo-helm
   - kyverno=https://kyverno.github.io/kyverno/
   - universal-crossplane=https://charts.upbound.io/stable
+  - localstack=https://localstack.github.io/helm-charts
 github-groups: true
 helm-extra-args: --timeout 600s
 validate-maintainers: false
