@@ -682,6 +682,30 @@ entries:
     urls:
     - https://github.com/thesoftwaregeek/helm-charts/releases/download/kyverno-policies-0.1.0/kyverno-policies-0.1.0.tgz
     version: 0.1.0
+  localstack:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2025-06-12T16:03:32.168717893Z"
+    dependencies:
+    - name: localstack
+      repository: https://localstack.github.io/helm-charts
+      version: 0.6.24
+    description: Localstack for Kubernetes
+    digest: 01ad0f83932f2e4dc4351d3d1dbb650f9dd1922f7f3de28d93947f41db4f5653
+    home: https://github.com/localstack/localstack
+    icon: https://raw.githubusercontent.com/localstack/localstack/main/assets/eso-logo-large.png
+    keywords:
+    - kubernetes-localstack
+    - localstack
+    kubeVersion: '>= 1.20.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: localstack
+    type: application
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/localstack-0.1.0/localstack-0.1.0.tgz
+    version: 0.1.0
   secrets-store-csi-driver:
   - apiVersion: v2
     created: "2025-04-01T15:55:28.133510765Z"
@@ -703,4 +727,4 @@ entries:
     urls:
     - https://github.com/thesoftwaregeek/helm-charts/releases/download/secrets-store-csi-driver-0.0.1/secrets-store-csi-driver-0.0.1.tgz
     version: 0.0.1
-generated: "2025-06-09T15:27:51.636521872Z"
+generated: "2025-06-12T16:03:32.168777123Z"
