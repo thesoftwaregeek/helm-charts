@@ -107,6 +107,33 @@ entries:
     version: 0.0.1
   argocd:
   - apiVersion: v2
+    appVersion: v3.0.6
+    created: "2025-06-22T18:07:21.003772847Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 8.1.1
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 12809b0894877161b7be18999fae97402d40fad89dfcdc4390ce9cf9ee7f49a2
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: mohammadsrahman@users.noreply.github.com
+      name: mohammadsrahman
+    name: argocd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/thesoftwaregeek/helm-charts/releases/download/argocd-1.1.0/argocd-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v2
     created: "2025-06-09T15:27:51.636494271Z"
     dependencies:
     - name: argo-cd
@@ -727,4 +754,4 @@ entries:
     urls:
     - https://github.com/thesoftwaregeek/helm-charts/releases/download/secrets-store-csi-driver-0.0.1/secrets-store-csi-driver-0.0.1.tgz
     version: 0.0.1
-generated: "2025-06-12T16:03:32.168777123Z"
+generated: "2025-06-22T18:07:21.003824433Z"
