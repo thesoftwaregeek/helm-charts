@@ -1,13 +1,13 @@
 apiVersion: v2
 name: kyverno
-version: 0.1.0
+version: 0.1.1
 kubeVersion: '>=1.25.0-0'
 maintainers:
   - name: mohammadsrahman
     email: mohammadsrahman@users.noreply.github.com
 dependencies:
   - name: kyverno
-    version: 3.3.7
+    version: 3.3.9
     repository: https://kyverno.github.io/kyverno/
 description: Kubernetes Native Policy Management
 home: https://kyverno.io/
