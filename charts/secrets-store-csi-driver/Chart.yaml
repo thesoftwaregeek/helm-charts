@@ -1,16 +1,15 @@
 apiVersion: v2
 name: secrets-store-csi-driver
-version: "0.0.1"
+version: 0.1.0
 kubeVersion: '>=1.25.0-0'
 maintainers:
   - name: mohammadsrahman
     email: mohammadsrahman@users.noreply.github.com
 dependencies:
   - name: secrets-store-csi-driver
-    version: 1.4.8
+    version: 1.5.0
     repository: https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts
 description: A Helm chart to install the SecretsStore CSI Driver inside a Kubernetes cluster.
 icon: https://github.com/kubernetes/kubernetes/blob/master/logo/logo.png
 sources:
   - https://github.com/kubernetes-sigs/secrets-store-csi-driver
-
