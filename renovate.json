@@ -22,8 +22,8 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": [
-        "^charts/[^/]+/Chart.yaml$"
+      "managerFilePatterns": [
+        "/^charts/[^/]+/Chart.yaml$/"
       ],
       "matchStrings": [
         "version:\\s*\"?(?<currentValue>\\d+\\.\\d+\\.\\d+(?:[-+].*)?)\"?"
@@ -44,23 +44,41 @@
   },
   "packageRules": [
     {
-      "matchManagers": ["helmv3"],
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["patch"],
+      "matchManagers": [
+        "helmv3"
+      ],
+      "matchDatasources": [
+        "helm"
+      ],
+      "matchUpdateTypes": [
+        "patch"
+      ],
       "bumpVersion": "patch",
       "semanticCommitScope": "{{parentDir}}"
     },
     {
-      "matchManagers": ["helmv3"],
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["minor"],
+      "matchManagers": [
+        "helmv3"
+      ],
+      "matchDatasources": [
+        "helm"
+      ],
+      "matchUpdateTypes": [
+        "minor"
+      ],
       "bumpVersion": "minor",
       "semanticCommitScope": "{{parentDir}}"
     },
     {
-      "matchManagers": ["helmv3"],
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["major"],
+      "matchManagers": [
+        "helmv3"
+      ],
+      "matchDatasources": [
+        "helm"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
       "bumpVersion": "major",
       "semanticCommitScope": "{{parentDir}}"
     }
